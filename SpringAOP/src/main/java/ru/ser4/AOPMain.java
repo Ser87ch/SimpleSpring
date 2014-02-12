@@ -12,6 +12,7 @@ public class AOPMain {
 			ShapeService ss = ctx.getBean("ss", ShapeService.class);
 			System.out.println(ss.getCircle().getName());
 			System.out.println(ss.getTriangle().getName());
+			ss.getCircle().setNameReturn("123");
 		}
 	}
 

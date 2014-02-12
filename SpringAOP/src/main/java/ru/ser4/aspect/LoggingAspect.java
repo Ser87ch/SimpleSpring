@@ -1,8 +1,14 @@
 package ru.ser4.aspect;
 
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+
+import ru.ser4.model.Circle;
 
 @Aspect
 public class LoggingAspect {
@@ -19,8 +25,29 @@ public class LoggingAspect {
 	}
 	
 	@Before("circleMethods()")
-	public void secondAdvice()
+	public void secondAdvice(JoinPoint jp)
 	{
-		System.out.println("Another advice run");
+		Circle c = (Circle) jp.getTarget();
+		System.out.println(c + " Another advice run" + jp);
 	}
+	
+	@AfterReturning(pointcut = "args(name)", returning="str")
+	public void stringArg(String name, String str) {
+		System.out.println(str + " String Arg " + name);
+	}
+	
+	@Around("allGetters()")
+	public Object aroundAdvice(ProceedingJoinPoint pjp) {
+		Object r = null;
+		try {
+			System.out.println("before");
+			r = pjp.proceed();
+			System.out.println("after");
+		} catch (Throwable e) {			
+			e.printStackTrace();
+		}
+		
+		return r;
+	}
+	
 }
