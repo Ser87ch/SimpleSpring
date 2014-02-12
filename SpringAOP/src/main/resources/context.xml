@@ -21,4 +21,13 @@
 	<bean name="ss" class="ru.ser4.service.ShapeService"/>
 	 
 	<bean name="loggingAspect" class="ru.ser4.aspect.LoggingAspect"/>
+	
+	<!-- <aop:config>
+	    
+	    <aop:aspect id="loggingAspect" ref="loggingAspect">
+	    	<aop:pointcut expression=""within(ru.ser4.model.Circle)" id="circleMethods"/>
+	    	
+	    	<aop:before method="aroundAdvice" pointcut-ref="circleMethods"/>
+	    </aop:aspect>
+	</aop:config> -->
 </beans>
