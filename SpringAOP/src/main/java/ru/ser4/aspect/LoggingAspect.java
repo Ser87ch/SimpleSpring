@@ -36,7 +36,7 @@ public class LoggingAspect {
 		System.out.println(str + " String Arg " + name);
 	}
 	
-	@Around("allGetters()")
+	@Around("@annotation(ru.ser4.aspect.Loggable)")
 	public Object aroundAdvice(ProceedingJoinPoint pjp) {
 		Object r = null;
 		try {

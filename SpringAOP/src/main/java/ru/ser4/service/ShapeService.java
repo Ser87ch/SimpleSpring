@@ -2,6 +2,7 @@ package ru.ser4.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import ru.ser4.aspect.Loggable;
 import ru.ser4.model.Circle;
 import ru.ser4.model.Triangle;
 
@@ -11,6 +12,7 @@ public class ShapeService {
 	@Autowired
 	private Triangle triangle;
 	
+	@Loggable
 	public Circle getCircle() {
 		return circle;
 	}
